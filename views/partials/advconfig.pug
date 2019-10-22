@@ -1,0 +1,98 @@
+include nav.pug
+
+div(class="container")
+	h1(id="configHeader") Configure Your Advertisement
+	div(ng-if="advconfigCtrl.cart.adv.length === 0")
+		div
+			p {{advconfigCtrl.cart.adv.advId}}
+			p {{advconfigCtrl.cart.adv.locX}}
+			p {{advconfigCtrl.cart.adv.locY}}
+			p {{advconfigCtrl.cart.adv.width}}
+			p {{advconfigCtrl.cart.adv.height}}
+			p {{advconfigCtrl.cart.adv.calculateCost(19) | currency}}
+
+		p Cart Empty back to 
+			a(ui-sref="store") store 
+
+	div(class="clr")
+
+	hr
+
+	div(ng-if="advconfigCtrl.cart.adv.advId > 0")
+		div(class="col-sm-6")
+			div(style="text-align:center;")
+				b AdvImage:
+				br
+
+				div(id="advImageUploadPreview" style="margin-left:auto; margin-right:auto;")
+				div(class="clr")
+				br
+				label(class="btn btn-default btn-file")
+					input(id="file{{advconfigCtrl.cart.adv.advId}}" style="margin-left:auto; margin-right:auto;" type="file" name="file{{advconfigCtrl.cart.adv.advId}}" fileread="addpicfile")
+				button(class="btn btn-info" ng-click="advconfigCtrl.uploadAdvImg()") Submit 
+				div(ng-show="advconfigCtrl.uploading")
+					div(class="progress")
+						div(id="upLoadProg" class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="{{advconfigCtrl.uploadProgress}}" aria-valuemin="0" aria-valuemax="100" ng-style="advconfigCtrl.uploadProgressStyle()") {{advconfigCtrl.uploadProgress}}%
+					div(ng-repeat="fup in addpicfile")
+						div {{fup.name}}
+						br
+					span
+						img(id="loader" src="public/img/loader.gif" style="display:none;")
+				br 
+				br
+			div(class="clr")
+		div(class="col-sm-6")
+			div(style="text-align:center;")
+				b Ad Preview:
+				br
+				canvas(id="advFitPreview" style="border: 3px solid black;")
+				br
+				div()
+					button(type="button" class="btn" ng-class="{'btn-info': advconfigCtrl.cart.adv.aspect === 0}" ng-click="advconfigCtrl.aspectSelect(0);" style="width:25%;")
+						span Stretch
+					button(type="button" class="btn"  ng-class="{'btn-info': advconfigCtrl.cart.adv.aspect === 1}" ng-click="advconfigCtrl.aspectSelect(1);" style="width:25%;")
+						span Fit
+					button(type="button" class="btn"  ng-class="{'btn-info': advconfigCtrl.cart.adv.aspect === 2}" ng-click="advconfigCtrl.aspectSelect(2);" style="width:25%;")
+						span Fill
+              
+		div(class="clr")
+		br
+		div(class="col-sm-6")
+			div(class="form-group")
+				label(for="advLink") Sponsorship Link (2X Cost):
+					button(class="btn btn-default btn-sm" ng-click="advconfigCtrl.showHideInputLink()")
+						span(class="glyphicon glyphicon-pencil")
+				
+				input(type="text" placeholder="http://www.example.com"
+					ng-class="{'has-warning': !advconfigCtrl.validateLink(), 'has-success':  advconfigCtrl.validateLink()}"	
+					 id="advLink" ng-model="advconfigCtrl.cart.adv.link" 
+					style="width:70%; margin-left:auto; margin-right:auto;" ng-if="advconfigCtrl.linkInput")
+
+		div(class="col-sm-6")
+			div(class="form-group")
+				label(for="advRunLength") Run Length:
+				br
+				div(style="width:70%; margin-left:auto; margin-right:auto;" range-slider val="advconfigCtrl.cart.adv.runTime")
+
+		div(class="clr")
+		br
+		div(class="col-xs-12" style="text-align:center;")
+			h3(ng-if="!advconfigCtrl.linkInput") Price: {{advconfigCtrl.cart.adv.calculateCost() | currency}}
+			h3(ng-if="advconfigCtrl.linkInput") Price w/Link: {{2*advconfigCtrl.cart.adv.calculateCost() | currency}}
+			
+		div(class="col-xs-6 col-xs-offset-3" style="text-align:center;")
+			button(id="configGoToCheckout" ng-click="advconfigCtrl.checkout()" class="btn btn-xl btn-info  btn-block" ng-disabled="advconfigCtrl.checkoutDisable()") Checkout
+br
+div(class="clr")
+br
+br
+include footer.pug
+
+
+
+
+
+
+
+
+

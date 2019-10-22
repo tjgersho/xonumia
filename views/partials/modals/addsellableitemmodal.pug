@@ -1,0 +1,29 @@
+div(id="AddSellableItem" class="modal fade" role="dialog")
+	div(class="modal-dialog")
+		div(class="modal-content")
+			div(class="modal-header")
+				button(type="button" class="close" data-dismiss="modal") &times;
+				h4(class="modal-title") Add New Item For Sale
+           
+			div(class="modal-body")
+      	          
+				label SKU:
+					input(class="form-control" ng-model="storeCtrl.addnewitem.sku" type="text"  required)
+     
+				label Name:
+					input(class="form-control" ng-model="storeCtrl.addnewitem.name" type="text")
+   
+     
+				label Base Price:
+					input(class="form-control" ng-model="storeCtrl.addnewitem.baseprice" type="text")
+    
+         
+				label Wholesale Price:
+					input(class="form-control" ng-model="storeCtrl.addnewitem.wholesaleprice" type="text")
+    
+				div(class="clr")
+				
+
+			div(class="modal-footer")
+				button(type="button" class="btn btn-default" ng-click="close()" data-dismiss="modal") Close
+				button(type="button" class="btn btn-primary"  ng-click="storeCtrl.submitaddnewitempost()") Add

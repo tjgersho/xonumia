@@ -1,0 +1,6 @@
+div(ng-if="loading" class="text-center")
+	img(src="public/img/loading.gif")
+div(ng-if="!loading")
+	h3 Your Sponsorships:
+	div(id="dashSponsorships")
+		p {{advData}}

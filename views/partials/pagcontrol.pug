@@ -1,0 +1,15 @@
+div(ng-if="numpages > 1")
+	nav
+		ul(class="pagination")
+			li
+				a(aria-label="Previous"
+					ng-click="setPageAngGetListing(currentpage-1)" 
+     					 ng-if="currentpage>=1")
+					span(aria-hidden="true") &laquo;
+			li(ng-repeat="n in [numpages] | makeRange" ng-class="activePag(n)")
+				a(ng-click="setPageAngGetListing(n)") {{n+1}}
+			li
+				a(aria-label="Next"
+				 ng-click="setPageAngGetListing(currentpage+1)"
+     				 ng-if="currentpage<numpages-1")        
+					span(aria-hidden="true") &raquo;

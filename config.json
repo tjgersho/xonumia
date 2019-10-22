@@ -1,0 +1,18 @@
+{
+    "port": 3000,
+    "xnumVal": 1,
+    "defaultXnumRadius": 0.3,
+    "xnumSides": 6,
+    "fireFood": 20,
+    "limitSplit": 16,
+    "defaultPlayerRadius": 0.4,
+    "adminPass": "DEFAULT",
+    "slowBase": 4.5,
+    "logChat": 0,
+    "networkUpdateFactor": 40,
+    "maxHeartbeatInterval": 5000,
+    "xnumUniformDisposition": true,
+    "virusUniformDisposition": false,
+    "newPlayerInitialPosition": "farthest",
+    "mergeTimer": 15
+}

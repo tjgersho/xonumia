@@ -1,0 +1,25 @@
+div(style="padding:5px;")
+	div(ng-repeat="optcat in prod.prodoptioncats")
+		
+		div(class="clr")
+
+
+		div(ng-if="optcat.options.length > 1")
+			p(style="text-transform: uppercase; float:left;") {{optcat.name}}:
+
+			select(class="form-control" 
+				style="width:60%; margin-left:auto; margin-right:auto; float:right;" 
+				ng-model="prod.selected[optcat.name]" 
+					ng-change="optionchanged(optcat.name, prod.selected[optcat.name])")
+				option(ng-repeat="opt in optcat.options" ng-selected="prod.selected[optcat.name] === opt.name" ng-if="opt.price>0" value="{{opt.name}}") {{opt.name}}  +  {{opt.price | currency}}
+				option(ng-repeat="opt in optcat.options" ng-selected="prod.selected[optcat.name] === opt.name" ng-if="!opt.price>0" value="{{opt.name}}") {{opt.name}}
+
+
+
+		div(ng-if="optcat.options.length < 2")
+
+			p(style="text-transform: uppercase; float:left;") {{optcat.name}}:
+				b(ng-repeat="opt in optcat.options" style="padding-left:10px;") {{opt.name}}
+
+
+	div(class="clr")

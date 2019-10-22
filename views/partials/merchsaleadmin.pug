@@ -1,0 +1,31 @@
+h4 MerchSale
+
+pag-control(getlistpromise="merchSaleAdminCtrl.getList(page)" currentpage="merchSaleAdminCtrl.currentpage" numpagespromise="merchSaleAdminCtrl.numPages()")
+
+div(class="styleTable")
+	table
+		tr
+			td MerchID
+			td Amount
+			td Status
+			td Archive?
+			td Show Details
+
+		tr(ng-repeat-start="list in merchSaleAdminCtrl.list" ng-init="list.showDetails = false")
+			td {{list.id}}
+			td {{list.amount}}
+			td {{list.status}}
+			td 
+				button(ng-click="merchSaleAdminCtrl.archiveSale(list.id)") Archive
+			td 
+				button(ng-click="list.showDetails ? list.showDetails = false : list.showDetails = true") Show Details
+		tr(ng-if="list.showDetails")
+			td(colspan="5")  Cart: <br /> {{list.cart}}
+		tr(ng-if="list.showDetails")
+			td(colspan="5")  VerificationCode: <br /> {{list.verificationCode}}
+		tr
+			td(colspan="5" style="background-color:#FF3333")
+		tr(ng-repeat-end)
+
+
+pag-control(getlistpromise="merchSaleAdminCtrl.getList(page)" currentpage="merchSaleAdminCtrl.currentpage" numpagespromise="merchSaleAdminCtrl.numPages()")

@@ -1,0 +1,23 @@
+h1 XNUM Payments
+
+
+pag-control(getlistpromise="payoutCtrl.getList(page)" currentpage="payoutCtrl.currentpage" numpagespromise="payoutCtrl.numPages()")
+
+
+div(class="styleTable")
+	table
+		tr
+			td Msg Date
+			td Name
+			td Email
+			td Message
+			td Archive?
+		tr(ng-repeat="list in payoutCtrl.list")
+			td {{list.createdAt}}
+			td {{list.name}}
+			td {{list.email}}
+			td {{list.comment}}	
+			td
+				button(ng-click="payoutCtrl.archivePayment(list.id)") Archive
+
+pag-control(getlistpromise="payoutCtrl.getList(page)" currentpage="payoutCtrl.currentpage" numpagespromise="payoutCtrl.numPages()")

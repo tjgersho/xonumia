@@ -1,0 +1,62 @@
+include modals/contactusthanks.pug
+
+
+include nav.pug
+
+div(class="clr")
+ 
+br
+div(class="container")
+ 
+	form(class="form-horizontal" name="contactUsForm" no-validate)
+		fieldset
+			legend Contact Us
+			div(class="row")
+				div(class="col-sm-6")
+
+					div(class="form-group text-center")
+						label(style="font-size:18px;" for="contact_name") Name:
+						input(name="contact_name" class="form-control" id="contact_name"  type="text" placeholder="Name"  style="width:60%; margin-left:auto; margin-right:auto;" ng-model="contactCtrl.contact_name" required)
+						div(class="alert alert-danger" role="alert" ng-bind="contactCtrl.errors.contact_name" ng-if="contactCtrl.errors.contact_name")
+
+				div(class="col-sm-6")
+					div(class="form-group text-center")
+						label(style="font-size:18px;" for="contact_email") Email:
+						input(name="contact_email" class="form-control" id="contact_email"  ng-model="contactCtrl.contact_email" type="email"  placeholder="Email" style="width:60%; margin-left:auto; margin-right:auto;" required)
+						div(class="alert alert-danger" role="alert" ng-bind="contactCtrl.errors.email" ng-if="contactCtrl.errors.email" style="width:60%; margin-left:auto; margin-right:auto;")
+						div(class="alert alert-danger" role="alert" ng-if="contactUsForm.contact_email.$error.email" style="width:60%; margin-left:auto; margin-right:auto;") Entry must be a valid email.
+						
+			div(class="row")
+				div(class="col-sm-6")
+					div(class="form-group text-center")
+						label(style="font-size:18px;" for="comment") Comment:
+						textarea(class="form-control" name="contact_comment" id="contact_comment" style="width:60%; margin-left:auto; margin-right:auto;" rows="5" ng-model="contactCtrl.contact_comment" required) Lets hear it...
+						div(class="alert alert-danger" role="alert" ng-bind="contactCtrl.errors.contact_comment" ng-if="contactCtrl.errors.contact_comment" style="width:60%; margin-left:auto; margin-right:auto;")
+
+				div(class="col-sm-6")
+					div(class="form-group")
+						div(style="display:block; width:304px;  margin-left:auto; margin-right:auto; margin-top:5px;")
+							div( class="g-recaptcha" data-sitekey="6LflqQsUAAAAADbZ5_KgeGUqAUvBX6TKlCHA4FfJ")
+							div(class="alert alert-danger" role="alert" ng-bind="contactCtrl.errors.contact_captcha" ng-if="contactCtrl.errors.contact_captcha" style="width:60%; margin-left:auto; margin-right:auto;")
+							br
+							div(class="clr")
+
+						div(class="form-group text-center" style="margin-top:25px;")
+							button(name="comment_submit" class="btn btn-info" id="comment_submit" style="width:60%;" ng-disabled="contactUsForm.$invalid" ng-click="contactCtrl.formsubmit()") Submit 
+								span
+									img(id="loader" src="img/loader.gif" style="display:none;")
+
+			div(class="row")
+				div(class="col-sm-6")
+				div(class="col-sm-6")
+					
+br
+div(class="clr")
+ 
+
+
+
+
+include footer.pug
+
+script(src='https://www.google.com/recaptcha/api.js')

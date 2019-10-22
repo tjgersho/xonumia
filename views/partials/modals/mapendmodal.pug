@@ -1,0 +1,12 @@
+div(id="mapEndModal" class="modal fade" role="dialog")
+	div(class="modal-dialog")
+		div(class="modal-content")
+			div(class="modal-header")
+				button(type="button" class="close" data-dismiss="modal") &times;
+				h4(class="modal-title") Map Finish!
+			div(class="modal-body")
+				
+				p {{playCtrl.mapEnd}}							
+
+			div(class="modal-footer")
+				button(type="button" class="btn btn-default pull-right" data-dismiss="modal" ng-click="playCtrl.closeMapEndNoticeDialog()") Finish

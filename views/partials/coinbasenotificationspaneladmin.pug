@@ -1,0 +1,38 @@
+h4 CoinBase Notifications
+
+pag-control(getlistpromise="coinBaseNotificationsPanelAdminCtrl.getList(page)"
+	 currentpage="coinBaseNotificationsPanelAdminCtrl.currentpage"
+	 numpagespromise="coinBaseNotificationsPanelAdminCtrl.numPages()")
+
+
+div(class="styleTable")
+	table
+		tr
+			td id
+			td Coinbase TXiD
+			td Type
+			td Name
+			td CartData
+			td CustomerInfo
+			td Amount
+			td Received
+			td Verified?
+			td Archive?
+		tr(ng-repeat-start="list in coinBaseNotificationsPanelAdminCtrl.list")
+
+			td {{list.id}}
+			td {{list.transId}}
+			td {{list.type}}
+			td {{list.name}}
+			td {{list.cartData}}
+			td {{list.customerInfo}}
+			td {{list.amount}}
+			td {{list.createdAt}}	
+			td {{list.verified}}
+			td
+				button(ng-click="coinBaseNotificationsPanelAdminCtrl.archiveNotif(list.id)") Archive
+		tr(ng-repeat-end)
+
+pag-control(getlistpromise="coinBaseNotificationsPanelAdminCtrl.getList(page)"
+	 currentpage="coinBaseNotificationsPanelAdminCtrl.currentpage"
+	 numpagespromise="coinBaseNotificationsPanelAdminCtrl.numPages()")

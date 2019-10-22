@@ -1,0 +1,9 @@
+node_modules/
+npm-debug.log
+data/*.sqlite
+dbConnect.json
+config/*
+node.pem
+node.ppk
+seeders/20161028212837-local-map-development.js
+

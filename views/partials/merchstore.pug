@@ -1,0 +1,50 @@
+h4 Merchandise Here!
+
+// p {{merchstoreCtrl.store}}
+
+
+// p {{storeCtrl.cart}}
+
+div(class="clr")
+br
+div(class="panel panel-default")
+	div(ng-repeat="product in merchstoreCtrl.store" style="position:relative;")
+		div(class="storeProdDescription" data-hoov="123" ng-click="merchstoreCtrl.gotoProd($event, product.sku)" ng-mouseover="merchstoreCtrl.mouseOverProdDescript($event)" ng-mouseout="merchstoreCtrl.mouseOutProdDescript($event)" style="border-bottom: 2px dotted #ccc;")
+
+			div(class="row" style="margin-top:15px; margin-bottom:5%; margin-top:5%;")
+
+				div(class="col-sm-5") 
+					img(data-img-for-sku="{{product.id}}" ng-src="public/prodImages/{{product.id}}/{{product.prodimgs[0].imgM}}" alt="{{product.name}}" style="width:100%;")
+				div(class="col-sm-4")     
+					a(ui-sref="product({id: product.id})")
+						h3 
+							b(style="pointer-events: none;") {{product.name}}
+					br
+					product-options(product="product" iswholesale="merchstoreCtrl.cart.iswholesale")
+					br
+					br
+				div(class="col-sm-3")
+					div(class="row")
+						div(class="col-xs-12")
+							div(ng-class="merchstoreCtrl.productmessageclass($event, product.sku, $index)" ng-bind-html="product.prodinfo")
+			div(class="clr")
+			br
+			div(class="pull-left")
+			p(style="font-size:25px; padding:15px; top:80%;") {{product.price | currency}}
+
+			div(class="pull-right") {{product.selected}}
+				button(ng-click="merchstoreCtrl.cart.addItem(product.id, product.sku, product.name, product.price, 1, product.selected)" class="btn btn-default" style="margin:5px;  top:80%;" ng-disabled="merchstoreCtrl.readytobuy(product.sku)") Add to Cart
+			div(class="clr")
+			div(class="clearfix")
+			div(class="clr")
+
+div(class="panel-footer")
+	a(ui-sref="cart" title="go to shopping cart" ng-hide="merchstoreCtrl.cart.getTotalCount() < 1" class="btn btn-default pull-left")
+		span(class="glyphicon glyphicon-shopping-cart")
+			b {{merchstoreCtrl.cart.getTotalCount()}} items, <b>{{merchstoreCtrl.cart.getTotalPrice() | currency}}</b>
+           
+	div(class="clearfix")
+	div(class="clr")
+
+
+

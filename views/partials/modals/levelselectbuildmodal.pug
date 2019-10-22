@@ -1,0 +1,26 @@
+div(id="levelSelectModalBuild" class="modal fade" role="dialog")
+	div(class="modal-dialog")
+		div(class="modal-content")
+			div(class="modal-header")
+				button(type="button" class="close" data-dismiss="modal") &times;
+				h4(class="modal-title") Select Level to Edit
+			div(class="modal-body")
+				div
+					div(class="form-group")
+						input(type="text" class="form-control input-sm" placeholder="Search Level")
+						
+						button(class="btn btn-default btn-sm" id="pagDownLevelList" ng-click="bldCtrl.pageDwn()")
+							span(class="glyphicon glyphicon-chevron-left")
+						select(id="buildlevelSelect" class="form-control input-sm pull-left" style="max-width:500px;")
+							option(selected="selected") Select Level
+							option(ng-repeat="option in bldCtrl.levels" value="{{option.id}}") {{option.id}} -- {{option.mapname}}
+						button(class="btn btn-default btn-sm pull-right" id="pagUpLevelList" ng-click="bldCtrl.pageUp()")
+							span(class="glyphicon glyphicon-chevron-right")
+						input(type="checkbox" id="orderByPulse" ng-model="bldCtrl.orderByPulse" ng-change="bldCtrl.orderByChange()")
+						sort by Pulse
+						br
+						
+
+			div(class="modal-footer")
+				button(type="button" class="btn btn-default pull-right" data-dismiss="modal" ng-click="bldCtrl.closeDialog()") Cancel
+				button(type="button" class="btn btn-default pull-right"   ng-click="bldCtrl.levelChange()") GO

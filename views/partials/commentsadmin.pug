@@ -1,0 +1,24 @@
+h4 ContactUs List
+
+div(id="contactusmsglistloading")
+	img(src="public/img/loading.gif")
+
+pag-control(getlistpromise="commentsAdminCtrl.getList(page)" currentpage="commentsAdminCtrl.currentpage" numpagespromise="commentsAdminCtrl.numPages()")
+
+div(class="styleTable")
+	table
+		tr
+			td Msg Date
+			td Name
+			td Email
+			td Message
+			td Delete?
+		tr(ng-repeat="list in commentsAdminCtrl.list")
+			td {{list.createdAt}}
+			td {{list.name}}
+			td {{list.email}}
+			td {{list.comment}}	
+			td
+				button(ng-click="commentsAdminCtrl.deletecomment(list.id)") Delete
+
+pag-control(getlistpromise="commentsAdminCtrl.getList(page)" currentpage="commentsAdminCtrl.currentpage" numpagespromise="commentsAdminCtrl.numPages()")

@@ -1,0 +1,69 @@
+div(class="container")
+	h3 Admin Home
+	br
+
+	ul(class="nav nav-tabs")
+		li(class="active")
+			a(href="#"  data-toggle="tab" ng-click="homeAdminCtrl.activatePanel(0)") Switch Board
+		li
+			a(href="#"  data-toggle="tab"  ng-click="homeAdminCtrl.activatePanel(1)") LevelBuild
+		li
+			a(href="#"  data-toggle="tab"  ng-click="homeAdminCtrl.activatePanel(2)") KeyValueCRUD
+		li
+			a(href="#"  data-toggle="tab"  ng-click="homeAdminCtrl.activatePanel(3)") EndPoint Tests
+
+	div(ng-if="homeAdminCtrl.adminSwitchBoard")
+		h4 Admin SwitchBoard
+		p {{homeAdminCtrl.adminKeyValueObjArray}}
+		
+ 
+	div(ng-if="homeAdminCtrl.adminBuildLevel")
+
+		div(class="row")
+			b LEVEL DATA:
+			div(class="clr")
+			div(class="col-xs-6")
+				p minX
+				input(id="minX" type="text" class="form-control" ng-model="homeAdminCtrl.minX")
+				br
+			div(class="col-xs-6")
+				p maxX
+				input(id="maxX" type="text" class="form-control" ng-model="homeAdminCtrl.maxX")
+				br
+			div(class="col-xs-6")
+				p minY
+				input(id="minY" type="text" class="form-control" ng-model="homeAdminCtrl.minY")
+				br
+			div(class="col-xs-6")
+				p maxY
+				input(id="maxY" type="text" class="form-control" ng-model="homeAdminCtrl.maxY")
+				br
+			div(class="col-sm-12")
+				p Level #:
+				input(id="levelForBuild" type="text" class="form-control" ng-model="homeAdminCtrl.levelForBuild")
+				br
+			div(class="col-xs-12")
+				button(ng-click="homeAdminCtrl.buildLargeLevel()" class="btn btn-default") Build Level {{homeAdminCtrl.levelForBuild}}
+
+	div(ng-if="homeAdminCtrl.adminKeyValueCRUD")
+		h4 Admin Key Value CRUD
+		p {{homeAdminCtrl.adminKeyValueObjArray}}
+
+	div(ng-if="homeAdminCtrl.scratchTests")
+		h4 EndPoint Tests
+		button(ng-click="homeAdminCtrl.paypalPaymentSuccessEndpointTestAjax()") Paypal Payment Success Test AJAX
+		br
+		button(ng-click="homeAdminCtrl.paypalPaymentSuccessEndpointTestFORM()") Paypal Payment Success Test FORM POST
+		br
+		button(ng-click="homeAdminCtrl.paypalRESTTesting()") Paypal Payment REST Test
+		br
+		button(ng-click="homeAdminCtrl.coinbaseAPIposts('api/v1/coinbase/getAccounts')") api/v1/coinbase/getAccounts
+		br
+		button(ng-click="homeAdminCtrl.coinbaseAPIposts('api/v1/coinbase/createWallet')") api/v1/coinbase/createWallet
+		br
+		button(ng-click="homeAdminCtrl.coinbaseAPIposts('api/v1/coinbase/sendMoney')") api/v1/coinbase/sendMoney
+
+
+
+
+

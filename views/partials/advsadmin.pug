@@ -1,0 +1,10 @@
+h1 ADvs
+
+
+pag-control(getlistpromise="advsCtrl.getList(page)" currentpage="advsCtrl.currentpage" numpagespromise="advsCtrl.numPages()")
+
+div(ng-repeat="adv in advsCtrl.list  | orderBy:'id'")
+	adv-rud(adv="adv" index="{{$index}}" getlistpromise="advsCtrl.getList(page)")
+
+pag-control(getlistpromise="advsCtrl.getList(page)" currentpage="advsCtrl.currentpage" numpagespromise="advsCtrl.numPages()")
+

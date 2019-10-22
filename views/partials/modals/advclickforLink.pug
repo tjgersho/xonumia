@@ -1,0 +1,18 @@
+div(id="AdvClickForLink" class="modal fade" role="dialog")
+	div(class="modal-dialog")
+		div(class="modal-content")
+			div(class="modal-header")
+				button(type="button" class="close" data-dismiss="modal") &times;
+				h4(class="modal-title") Xonumia Sponsor Link
+			div(class="modal-body")
+				
+				p Check out our sponsor's link:
+				div(class="col-sm-6")
+					a(href="{{playCtrl.advClickforLink.link}}" target="_blank" style="font-size:15px;") {{playCtrl.advClickforLink.link}}
+				div(class="col-sm-6")
+					a(href="{{playCtrl.advClickforLink.link}}" target="_blank" style="font-size:15px;")
+						img(ng-src="{{playCtrl.advClickforLink.htmlImg.src}}" style="width:100%;")
+
+				div(class="clr")
+			div(class="modal-footer")
+				button(type="button" class="btn btn-default pull-right" data-dismiss="modal" ng-click="playCtrl.closeDialog()") Close

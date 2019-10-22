@@ -1,0 +1,88 @@
+include nav.pug
+include modals/requestXnumPayment.pug
+div(class="container")
+	h1(style="padding-left:30px;") Dashboard
+
+
+	div(class="row")
+		hr
+		div(class="col-md-6")
+			div(style="display:block; width:250px; height:165px; overflow:hidden; margin-left:auto; margin-right:auto;")
+				h4(style="text-shadow: 2px 2px 5px #ff0000;") Edit Colors:
+				div(style="width:125px; height:125px; float:left;")
+					canvas(id="customizeColors" width="125px" height="125px")
+	
+				div(style="width:125px; height:62px; float:left;")
+					div(style="float:right;")
+						p Color: 
+							input(id="colorPickerBody" type="text")
+				div(style="width:125px; height:62px; float:right;")
+					div(style="float:right;")
+						p Border 
+							input(id="colorPickerBorder" type="text")
+			br
+			div(class="clr")
+			hr
+		div(class="col-md-6")
+			div(style="position:relative; display:block; width:330px; height:165px; overflow:hidden; margin-left:auto; margin-right:auto;")
+				div(style="width:80px; height:80px; position:absolute; top:0; left:0;")
+					canvas(id="xnumDrawCanvas" width="80px" height="80px")
+				div(style="width:80px; height:80px; position:absolute; top:10px; left:80px;")
+					b(style="text-shadow: 2px 2px 5px #ff0000;") XNUM: <span style="color:#FF3333;">{{dashCtrl.user.xnumCount}}</span>
+				div(style="position:absolute; top:50px; left:80px;")
+					b 
+						img(src="public/img/icon-quote.png" width="30px") 
+						span {{dashCtrl.user.xnumValue  | currency}}
+				div(style="position:absolute; top:10px; right:5px;")
+					button(ng-click="dashCtrl.showRequestPaymentModal()"
+						 class="btn btn-danger" 
+						ng-if="dashCtrl.user.xnumAvailableValue > 0.01")
+						img(src="public/img/icon-cash.png" width="30px") 
+						span {{dashCtrl.user.xnumAvailableValue | currency}}
+
+				div(style="width:80px; height:80px; position:absolute; top:100px; right:10px;")
+					canvas(id="xbitDrawCanvas" width="80px" height="80px")
+				div(style="position:absolute; top:90px; right:30px;")
+					b(style="text-shadow: 2px 2px 5px #ff0000;") XBIT: <span style="color:#FF3333;">{{dashCtrl.user.xBits}}</span>
+				
+			br
+			div(class="clr")
+			hr
+
+
+div(class="container" ng-if="dashCtrl.userConqurings.count > 0")
+	div(class="row")
+		div(class="col-md-12")
+			dash-conqurings(conqur-data="dashCtrl.userConqurings")
+		br
+		div(class="clr")
+		hr
+
+div(class="container" ng-if="dashCtrl.userAdvertisements.count > 0")
+	div(class="row")
+		div(class="col-md-12")
+			dash-advs(adv-data="dashCtrl.userAdvertisements")
+		br
+		div(class="clr")
+		hr
+
+
+
+div(id="leaderBoard")
+	button(class="btn btn-sm pull-left" sytle="position:relative;" ng-click="dashCtrl.leaderBoardToggle()")
+			span(class="glyphicon glyphicon-th-list" ng-show="!dashCtrl.showLeaderBoard")
+			span(class="glyphicon glyphicon-menu-left" ng-show="dashCtrl.showLeaderBoard")
+	div(id="leaderBoardList" ng-show="dashCtrl.showLeaderBoard")
+		h4(class="pull-right" style="padding-right:5px;") XoLeaderboard
+		br
+		div(id="xBitleaderBoardTab" ng-click="dashCtrl.showXbitsorXnums(0)")
+			b XBIT
+		div(id="xNumleaderBoardTab" ng-click="dashCtrl.showXbitsorXnums(1)")
+			b XNUM
+		div(class="clr")
+		div(id="xBitLeaderBoard" ng-if="dashCtrl.showXbitLeaderBoard")
+			xbit-leaderboard(vals="dashCtrl.leaderboardXbits") 
+		div(id="xNumLeaderBoard" ng-if="!dashCtrl.showXbitLeaderBoard")
+			xnum-leaderboard(vals="dashCtrl.leaderboardXnums") 
+
+include footer.pug 

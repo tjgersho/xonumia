@@ -1,0 +1,4 @@
+div(id="xbitleaderBoardScroll")
+	div(ng-repeat="v in lb")
+		span {{$index}}. {{v.username}} --- {{v.xBits | number: 2}}
+		br

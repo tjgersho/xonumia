@@ -1,0 +1,60 @@
+include modals/buyadv.pug
+include modals/levelselectplaymodal.pug
+include modals/mapintromodal.pug
+include modals/mapstartmodal.pug
+include modals/mapendmodal.pug
+include modals/advclickforLink.pug
+include modals/mapendbuntneedXflags.pug
+
+canvas(id="cvs" class="fullCanvas") Your browser doesn't support Xonuima
+
+canvas(id="cvsTempMemory" class="fullCanvas" style="display:none;")
+
+img(id="loading" src="public/img/pmlogo.png" style="position:fixed;")
+
+a(class="top-left" ng-click="playCtrl.goto('index')")
+	img(id="topLefLogo" src="public/img/xoIconV1.png" width="55px;" height="55px")
+
+div(class="level-select-box")
+	button(class="btn btn-default btn-sm pull-right" id="levelSelectIcon" ng-click="playCtrl.openLevelSelectModal()")
+			span(class="glyphicon glyphicon-equalizer")
+	p(class="pull-right") Level: {{playCtrl.levelSelect}}
+
+div(id="leaderBoard")
+	button(class="btn btn-sm pull-left" sytle="position:relative;" ng-click="playCtrl.leaderBoardToggle()")
+			span(class="glyphicon glyphicon-th-list" ng-show="!playCtrl.showLeaderBoard")
+			span(class="glyphicon glyphicon-menu-left" ng-show="playCtrl.showLeaderBoard")
+	div(id="leaderBoardList" ng-show="playCtrl.showLeaderBoard")
+		h4(class="pull-right" style="padding-right:5px;") XoLeaderboard
+		br
+		div(id="xBitleaderBoardTab" ng-click="playCtrl.showXbitsorXnums(0)")
+			b XBIT
+		div(id="xNumleaderBoardTab" ng-click="playCtrl.showXbitsorXnums(1)")
+			b XNUM
+		div(class="clr")
+		div(id="xBitLeaderBoard" ng-if="playCtrl.showXbitLeaderBoard")
+			xbit-leaderboard(vals="playCtrl.leaderboardXbits") 
+		div(id="xNumLeaderBoard" ng-if="!playCtrl.showXbitLeaderBoard")
+			xnum-leaderboard(vals="playCtrl.leaderboardXnums") 
+
+div(id="pulseUpButton")
+	button(class="btn btn-sm" 
+				ng-disabled="!playCtrl.levelPulseIsClickable"
+				ng-class="{'btn-info': playCtrl.levelPulseIsClickable}" 
+				ng-click="playCtrl.pulseUpLevel()" tooltip="Pulse Up Level")
+			span(class="glyphicon glyphicon-signal")
+			span(class="badge" style="margin-left:5px;" ng-if="playCtrl.levelPulse>0") {{playCtrl.levelPulse}}
+
+
+button(type="button" class="btn btn-default bottom-right btn-xs" ng-click="playCtrl.logout()") Logout
+
+
+button(type="button" class="btn btn-default bottom-left btn-sm" ng-click="playCtrl.refresh()")
+	span(class="glyphicon glyphicon-refresh")
+
+
+button(type="button" class="btn btn-default fixed-bottom btn-sm" style="left:50px;" ng-click="playCtrl.goto('dashboard')")
+	span(class="glyphicon glyphicon-user")
+
+button(type="button" style="position:absolute; left:42%;" class="btn btn-default fixed-bottom"  ng-click="playCtrl.goto('build')") Build
+

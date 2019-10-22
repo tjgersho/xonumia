@@ -1,0 +1,30 @@
+h1 Levels
+
+pag-control(getlistpromise="levelAdminCtrl.getList(page)" currentpage="levelAdminCtrl.currentpage" numpagespromise="levelAdminCtrl.numPages()")
+
+div(class="styleTable")
+	table
+		tr
+			td ID
+			td MapName
+			td (startXtile, startYtile)
+			td (finishXtile, finishYtile)
+			td (maxY, maxX, minY, minX)
+			td UserId
+			td Pulse
+			td MapIntro
+			td StartSquare
+			td EndSquare
+		tr(ng-repeat="map in levelAdminCtrl.list")
+			td {{map.id}}
+			td {{map.mapname}}
+			td ({{map.startXtile}}, {{map.startYtile}})
+			td ({{map.finishXtile}}, {{map.finishYtile}})
+			td ({{map.maxY}}, {{map.maxX}}, {{map.minY}}, {{map.minX}})
+			td {{map.userId}}
+			td {{map.pulse}}
+			td {{map.mapIntro}}
+			td {{map.startSquare}}
+			td {{map.endSquare}}
+
+pag-control(getlistpromise="levelAdminCtrl.getList(page)" currentpage="levelAdminCtrl.currentpage" numpagespromise="levelAdminCtrl.numPages()")

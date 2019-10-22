@@ -1,0 +1,14 @@
+div(id="buyAdvModal" class="modal fade" role="dialog")
+	div(class="modal-dialog")
+		div(class="modal-content")
+			div(class="modal-header")
+				button(type="button" class="close" data-dismiss="modal") &times;
+				h4(class="modal-title") Sponsor Xonumia Tiles
+			div(class="modal-body")
+				
+				p You can upload any picture you would like as long as it is approved (meets Ad <a href ui-sref="guidelines">Guidelines</a>)
+							
+				div(class="clr")
+			div(class="modal-footer")
+				button(type="button" class="btn btn-default pull-right" data-dismiss="modal" ng-click="playCtrl.closeDialog()") Cancel
+				button(id="sponsorAdVButton" type="button" data-dismiss="modal" class="btn btn-default pull-right"  ng-click="playCtrl.goBuyAdv('advconfig')") Sponsor

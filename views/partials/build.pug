@@ -1,0 +1,91 @@
+include modals/deletemap.pug
+include modals/deleteadv.pug
+include modals/addadv.pug
+include modals/setmapintro.pug
+include modals/setstartsquaretext.pug
+include modals/setfinishsquaretext.pug
+include modals/levelselectbuildmodal.pug
+
+canvas(tabindex="1" id="buildcvs" class="fullCanvas") Your browser doesn't support Xonumia
+
+canvas(id="cvsBuildTempMemory" class="fullCanvas" style="display:none;")
+
+a(class="top-left" ui-sref="play({level: bldCtrl.levelSelect})")
+	img(id="topLefLogo" src="public/img/xoIconV1.png" width="55px;" height="55px")
+
+div(class="level-select-box")
+	button(class="btn btn-default btn-sm pull-right" id="levelSelectIcon" ng-click="bldCtrl.openLevelSelectModal()")
+			span(class="glyphicon glyphicon-equalizer")
+	p(class="pull-right") Level: {{bldCtrl.levelSelect}}
+	button(class="btn btn-default btn-sm pull-right" ng-if="!bldCtrl.isCrowdSourced && bldCtrl.crowdSourceAble()" ng-click="bldCtrl.goOpenSource()")
+		Go Open Source
+
+
+div(style="position:fixed; right:3px; top:35%;")
+	input(id="colorPicker" type="text")
+
+button(type="button" class="btn btn-default btn-xs bottom-right" ng-click="buildCtrl.logout()") Logout
+
+div(class="wall-builder-box")
+	div(style="position:absolute; left:34px; top:0;")
+		button(class="btn btn-default btn-sm" ng-click="bldCtrl.wallUp()")
+			span(class="glyphicon glyphicon-menu-up")
+	div(style="position:absolute; left:68px; top:30px;")
+		button(class="btn btn-default btn-sm" ng-click="bldCtrl.wallRight()")
+			span(class="glyphicon glyphicon-menu-right")
+	div(style="position:absolute; left:34px; top:60px;")
+		button(class="btn btn-default btn-sm" ng-click="bldCtrl.wallDown()")
+			span(class="glyphicon glyphicon-menu-down")
+	div(style="position:absolute; left:0; top:30px;")
+		button(class="btn btn-default btn-sm" ng-click="bldCtrl.wallLeft()")
+			span(class="glyphicon glyphicon-menu-left")
+	div(style="position:absolute; left:34px; top:30px;")
+		button(class="btn btn-default btn-sm" ng-click="bldCtrl.color()")
+			span(class="glyphicon glyphicon-tint")
+	div(style="position:absolute; left:68px; top:60px;" ng-if="bldCtrl.isAdmin")
+		button(class="btn btn-default btn-sm" ng-click="bldCtrl.addAdvModal()")
+			span(class="glyphicon glyphicon-tag")
+	div(style="position:absolute; left:102px; top:60px;")
+		button(class="btn btn-default btn-sm" ng-click="bldCtrl.setStartCell()")
+			span(class="glyphicon glyphicon-map-marker")
+	div(style="position:absolute; left:136px; top:60px;")
+		button(class="btn btn-default btn-sm" ng-click="bldCtrl.setEndCell()")
+			span(class="glyphicon glyphicon-screenshot")
+	div(style="position:absolute; left:0; top:-34px;")
+		button(class="btn btn-default btn-sm" ng-click="bldCtrl.setIntroModal()")
+			span(class="glyphicon glyphicon-info-sign")
+
+	div(style="position:absolute; left:0; top:-70px;")
+		a(type="button" class="btn btn-default btn-sm" ui-sref="dashboard")
+			span(class="glyphicon glyphicon-user")
+			
+
+
+
+div(class="bottom-left")
+	button(type="button" class="btn btn-default btn-sm pull-left" id="addLevelBtn" ng-click="bldCtrl.addLevel()")
+		span(class="glyphicon glyphicon-plus")
+	input(id="addLevel" class="form-control input-sm pull-left" type="text" value="{{bldCtrl.levelSelectName}}" style="width:100px;") 
+	button(type="button" class="btn btn-default btn-sm pull-left" id="editLevelBtn" ng-click="bldCtrl.editLevelname()")
+		span(class="glyphicon glyphicon-pencil")
+
+		
+		
+
+
+
+button(type="button" class="btn btn-info btn-sm fixed-bottom" style="left:50%;" id="saveMapBtn") Save
+
+button(type="button" class="btn btn-default  btn-xs" ng-click="bldCtrl.logout()" style="position:fixed; bottom:30px; right:3px;") Logout
+		
+button(type="button" class="btn btn-danger btn-xs bottom-right"  ng-click="bldCtrl.deleteLevel()") Delete Level
+
+		
+
+
+img(id="loading" src="public/img/loading.gif" style="position:fixed; bottom: 55px; right:25px; display:none;")
+
+
+  
+
+

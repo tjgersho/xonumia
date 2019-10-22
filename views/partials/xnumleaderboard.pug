@@ -1,0 +1,4 @@
+div(id="xnumleaderBoardScroll")
+	div(ng-repeat="v in lb")
+		span {{$index}}. {{v.username}} --- {{v.xNums | number: 2}}
+		br

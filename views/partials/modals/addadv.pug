@@ -1,0 +1,39 @@
+div(id="addAdvModal" class="modal fade" role="dialog" ng-if="bldCtrl.isAdmin")
+	div(class="modal-dialog")
+		div(class="modal-content")
+			div(class="modal-header")
+				button(type="button" class="close" data-dismiss="modal") &times;
+				h4(class="modal-title") Add AdV
+			div(class="modal-body")
+				div(class="form-group")
+					label(class="col-md-4 control-label" for="advWidth") AdVWidth 
+					div(class="col-md-4")
+						select(id="advWidth" name="advWidth" ng-model="bldCtrl.advWidth" class="form-control")
+							option(value="2" selected) 2
+							option(value="3") 3
+							option(value="4") 4
+							option(value="5") 5
+							option(value="6") 6
+							option(value="7") 7
+							option(value="8") 8
+							option(value="9") 9
+							option(value="10") 10
+
+				div(class="form-group")
+					label(class="col-md-4 control-label" for="advHeight") AdVHeight 
+					div(class="col-md-4")
+						select(id="advHeight" name="advHeight" ng-model="bldCtrl.advHeight" class="form-control")
+							option(value="2" selected) 2
+							option(value="3") 3
+							option(value="4") 4
+							option(value="5") 5
+							option(value="6") 6
+							option(value="7") 7
+							option(value="8") 8
+							option(value="9") 9
+							option(value="10") 10
+
+				div(class="clr")
+			div(class="modal-footer")
+				button(type="button" class="btn btn-default pull-right" data-dismiss="modal" ng-click="bldCtrl.closeDialog()") Cancel
+				button(id="addAdVBtn" type="button" class="btn btn-default pull-right"  ng-click="bldCtrl.submitAdvAllocation()") Add AdV

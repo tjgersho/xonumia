@@ -1,0 +1,31 @@
+div(class="col-sm-6" ng-class="{'divisor-color': index%2 === 0}" style="padding:5px; border-radius:5px; border:1px solid #000000;")
+	div(class="pull-right")
+		button(class="btn btn-danger" ng-click="deleteAdv(adv.id)")
+			span(class="glyphicon glyphicon-remove")
+	p(class="pull-left") AdID: {{adv.id}}
+	p(class="pull-left") Image: {{adv.img}}
+	p(class="pull-left") UserID:
+		input(type="text" ng-model="adv.userId" ng-change="updateUserId(adv.id, adv.userId)")
+	p(class="pull-left") Has Link:
+		input(ng-model="adv.hasLink" type="checkbox" ng-change="updateHasLink(adv.id, adv.hasLink)")
+	p(class="pull-left" ng-if="adv.hasLink") Link:
+		input(class="form-control" ng-model="adv.link" type="text" ng-blur="updateLink(adv.id, adv.link)")
+	p(class="pull-left") Aspect:
+		div()
+			button(type="button" class="btn" ng-class="{'btn-info': adv.aspect === 0}" ng-click="updateaspect(adv,0);" style="width:25%;")
+				span Stretch
+			button(type="button" class="btn"  ng-class="{'btn-info': adv.aspect === 1}" ng-click="updateaspect(adv,1);" style="width:25%;")
+				span Fit
+			button(type="button" class="btn"  ng-class="{'btn-info': adv.aspect === 2}" ng-click="updateaspect(adv,2);" style="width:25%;")
+				span Fill
+
+	p(class="pull-left") Available:
+		input(ng-model="adv.available" type="checkbox" ng-change="updateAvailability(adv.id, adv.available)")
+	p(class="pull-left") SponsorshipInterest:
+		input(ng-model="adv.sponsorshipInterest" type="checkbox" ng-change="updateInterest(adv.id, adv.sponsorshipInterest)")
+	p(class="pull-left") Dueup: {{adv.dueup}}
+	p(class="pull-left") PurchaseDate: {{adv.purchaseDate}}
+	p(class="pull-left") PurchaseAmount: {{adv.purchaseAmount}}
+	p(class="pull-left") PurchaseAmountOfTime: {{adv.purchaseAmountOfTime}}
+	img(class="pull-right" ng-src="public/advImages/{{adv.id}}/{{adv.imgS}}" style="width:100px;")
+	div(class="clr")

@@ -1,0 +1,31 @@
+h4 AdvPurchase
+
+pag-control(getlistpromise="advpurchaseAdminCtrl.getList(page)" currentpage="advpurchaseAdminCtrl.currentpage" numpagespromise="advpurchaseAdminCtrl.numPages()")
+
+div(class="styleTable")
+	table
+		tr
+			td PurchaseID
+			td AdvId
+			td Amount
+			td Date
+			td Archive?
+			td Show Details
+
+		tr(ng-repeat-start="list in advpurchaseAdminCtrl.list" ng-init="list.showDetails = false")
+			td {{list.id}}
+			td {{list.advId}}
+			td {{list.amount | currency}}
+			td {{list.createdAt | date}}	
+			td
+				button(ng-click="advpurchaseAdminCtrl.archiveSale(list.id)") Archive
+			td 
+				button(ng-click="list.showDetails ? list.showDetails = false : list.showDetails = true") Show Details
+	
+		tr(ng-if="list.showDetails")
+			td(colspan="6")  VerificationCode: <br /> {{list.verificationCode}}
+		tr
+			td(colspan="6" style="background-color:#33FFFF")
+		tr(ng-repeat-end)
+
+pag-control(getlistpromise="advpurchaseAdminCtrl.getList(page)" currentpage="advpurchaseAdminCtrl.currentpage" numpagespromise="advpurchaseAdminCtrl.numPages()")

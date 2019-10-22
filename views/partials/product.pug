@@ -1,0 +1,42 @@
+include nav.pug
+
+br
+
+div(class="container" ng-if="productCtrl.product")
+	div(class="row")
+		div(class="col-sm-7")
+			zoomproduct-pics(product="productCtrl.product")
+			//img(ng-src="public/prodImages/{{productCtrl.product.id}}/{{productCtrl.product.prodimgs[0].imgM}}" alt="{{productCtrl.product.name}}" style="width:150px;")
+	   
+		div(class="col-sm-5")
+			h3 {{productCtrl.product.name}}:
+			p(ng-bind-html="productCtrl.product.proddesc[0].description")
+			p
+				ul
+					li(ng-repeat="des in productCtrl.product.proddesc" ng-bind-html="des.description" ng-if="$index !== 0")
+			p(style="font-size:25px; padding:15px") {{productCtrl.product.price | currency}}
+			br
+			product-options(product="productCtrl.product")
+	
+			div(ng-bind-html="productCtrl.product.prodinfo")
+			div(class="clearfix")
+			button(class="btn btn-block btn-success"  ng-click="productCtrl.cart.addItem(productCtrl.product.id, productCtrl.product.sku, productCtrl.product.name, productCtrl.product.price, 1, productCtrl.product.selected)" ng-disabled="productCtrl.readytobuy(productCtrl.product.sku)")
+				span(class="glyphicon glyphicon-shopping-cart")
+				b Add to Cart
+			button(class="btn btn-block" ng-click="productCtrl.backtoStore()")
+				i(class="icon-chevron-left") 
+				b Back to Store
+			br
+			br
+			a(ui-sref="cart" title="go to shopping cart" ng-disabled="productCtrl.cart.getTotalCount() < 1" class="btn btn-default")
+				span(class="glyphicon glyphicon-shopping-cart")
+				b {{productCtrl.cart.getTotalCount()}}  items, <b>{{productCtrl.cart.getTotalPrice() | currency}}</b>
+				span(ng-show="productCtrl.cart.getTotalCount(productCtrl.product.sku) > 0") <br />this item is in the cart
+						 
+			div(class="clr")
+
+
+br
+br
+
+include footer.pug

@@ -1,0 +1,15 @@
+include modals/addsellableitemmodal.pug
+include modals/deleteproductmodal.pug
+
+h4 Store Manager
+div(id="storemanagerloading" style="display:none;")
+	img(src="public/ims/loading.gif")
+
+button(class="btn btn-xl btn-warning" ng-click="storeCtrl.addsellableitem()") Add Store Item
+div(class="container")
+	div(class="row" ng-repeat="itm in storeCtrl.adminstore" ng-style="storeCtrl.storeitembg($index)" style="border-bottom-style: dotted;")
+		button(class="btn btn-xs btn-danger pull-right" ng-click="storeCtrl.deletestoreitemmodal(itm.id)") 
+			span(class="glyphicon glyphicon-remove") 
+
+		store-item(storeitem="itm" getstore="storeCtrl.getadminstore()")
+

@@ -1,0 +1,11 @@
+h4 Sponsorships Available Here!
+
+div(ng-repeat="s in store" class="row")
+	canvas(id="adV_id_{{s.id}}" class="sponsorshipStoreCanvas" ng-click="advBuy($index)")
+	br
+	br
+	div(class="col-sm-3") Cell Width -- {{s.width}}
+	div(class="col-sm-3") Cell Height -- {{s.height}}
+	div(class="col-sm-3")
+		b 1 Month -- {{calcOneMonthRent(s.width, s.height) | currency}}
+	hr

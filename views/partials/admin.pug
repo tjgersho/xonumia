@@ -1,0 +1,78 @@
+
+include nav.pug
+
+div(class="container")
+	h2 Admin
+
+	ul(class="nav nav-tabs")
+		li(ng-class="{'acitve': adminCtrl.homePanel}")
+			a(href="#" ng-click="adminCtrl.activatePanel('home')") Home
+
+		li(ng-class="{'acitve': adminCtrl.storePanel}")
+			a(href="#"  ng-click="adminCtrl.activatePanel('store')") STORE
+
+		li(ng-class="{'acitve': adminCtrl.salesPanel}")
+			a(href="#"  ng-click="adminCtrl.activatePanel('sales')") MerchSales
+			
+		li(ng-class="{'acitve': adminCtrl.advertisersPanel}")
+			a(href="#"  ng-click="adminCtrl.activatePanel('advertisers')") ADVERTISERS
+
+		li(ng-class="{'acitve': adminCtrl.advsPanel}")
+			a(href="#" ng-click="adminCtrl.activatePanel('advs')") ADvS
+
+		li(ng-class="{'acitve': adminCtrl.advPurchase}")
+			a(href="#"  ng-click="adminCtrl.activatePanel('advpurchase')") ADvPurchase
+
+		li(ng-class="{'acitve': adminCtrl.payoutRequestPanel}")
+			a(href="#" ng-click="adminCtrl.activatePanel('payoutsReq')") xnumPayout Requests
+
+		li(ng-class="{'acitve': adminCtrl.payoutPanel}")
+			a(href="#" ng-click="adminCtrl.activatePanel('payouts')") xnumPayments
+
+		li(ng-class="{'acitve': adminCtrl.playerPanel}")
+			a(href="#"  ng-click="adminCtrl.activatePanel('players')") PLAYERS
+
+		li(ng-class="{'acitve': adminCtrl.xonumiaPanel}")
+			a(href="#"  ng-click="adminCtrl.activatePanel('xonumia')") XONUMIA
+
+		li(ng-class="{'acitve': adminCtrl.levelsPanel}")
+			a(href="#"  ng-click="adminCtrl.activatePanel('levels')") LEVELS
+
+		li(ng-class="{'acitve': adminCtrl.commentsPanel}")
+			a(href="#"  ng-click="adminCtrl.activatePanel('comments')") COMMENTS
+
+		li(ng-class="{'acitve': adminCtrl.coinbaseNotificationPanel}")
+			a(href="#"  ng-click="adminCtrl.activatePanel('coinbasenotifications')") Coinbase Notifications
+
+
+	home-panel-admin(ng-if="adminCtrl.homePanel")
+
+	store-panel-admin(ng-if="adminCtrl.storePanel")
+
+	merch-sales-admin(ng-if="adminCtrl.salesPanel")
+
+	advertisers-panel-admin(ng-if="adminCtrl.advertisersPanel")
+
+	advs-panel-admin(ng-if="adminCtrl.advsPanel")
+
+	advs-purchase-admin(ng-if="adminCtrl.advPurchase")
+
+	payoutrequest-panel-admin(ng-if="adminCtrl.payoutRequestPanel")
+
+	payout-panel-admin(ng-if="adminCtrl.payoutPanel")
+
+	player-panel-admin(ng-if="adminCtrl.playerPanel")
+
+	xonumia-panel-admin(ng-if="adminCtrl.xonumiaPanel")
+
+	levels-panel-admin(ng-if="adminCtrl.levelsPanel")
+
+	comments-panel-admin(ng-if="adminCtrl.commentsPanel")
+
+	coin-base-notifications-panel-admin(ng-if="adminCtrl.coinbaseNotificationPanel")
+
+br
+div(class="clr")
+br
+
+include footer.pug

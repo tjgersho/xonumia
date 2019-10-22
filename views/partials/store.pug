@@ -1,0 +1,23 @@
+include nav.pug
+
+div(class="container")
+	h2(style="margin-top:0px; margin-bottom:0px; text-align:center; font-size:30px;") Store
+	a(ui-sref="cart" title="go to shopping cart" ng-hide="storeCtrl.cart.getTotalCount() < 1" class="btn btn-default pull-right")
+		span(class="glyphicon glyphicon-shopping-cart")
+			b {{storeCtrl.cart.getTotalCount()}} items, <b>{{storeCtrl.cart.getTotalPrice() | currency}}</b>
+	div(class="clr")
+	br
+
+	ul(class="nav nav-tabs")
+		li(class="active")
+			a(href="#"  data-toggle="tab" ng-click="storeCtrl.activatePanel('merch')") Merchandise
+
+		li
+			a(href="#"  data-toggle="tab"  ng-click="storeCtrl.activatePanel('sponsor')") Sponsorships
+
+	merch-store-panel(ng-if="storeCtrl.merchPanel")
+
+	sponsorship-store-panel(ng-if="storeCtrl.sponsorPanel")
+
+
+include footer.pug

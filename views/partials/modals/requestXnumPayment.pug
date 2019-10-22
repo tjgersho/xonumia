@@ -1,0 +1,16 @@
+div(id="RequestXnumPaymentModal" class="modal fade" role="dialog")
+	div(class="modal-dialog")
+		div(class="modal-content")
+			div(class="modal-header")
+				button(type="button" class="close" data-dismiss="modal") &times;
+				h4(class="modal-title") Request Payment for Xnum
+			div(class="modal-body")
+				request-Xnumpayment()
+				p Collect All?
+
+				
+
+				br
+			div(class="modal-footer")
+				button(type="button" class="btn btn-default" data-dismiss="modal" style="float:right" ng-click="dashCtrl.closeDialog()") Cancel
+				button(type="button" class="btn btn-default" ng-click="dashCtrl.sendRequest()" style="float:right") Send Request

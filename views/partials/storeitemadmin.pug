@@ -1,0 +1,137 @@
+b {{dberror}}
+
+div(class="col-sm-6")
+	h1 {{storeitem.sku}}
+	b Name: 
+	br
+	input(class="form-control" ng-model="storeitem.name" type="text" ng-blur="updatename(storeitem.id, storeitem.name)")
+	br
+	br
+div(class="col-sm-6")
+	b Base Price:
+	br
+	input(class="form-control" ng-model="storeitem.baseprice" type="text" ng-blur="updatebaseprice(storeitem.id, storeitem.baseprice)")
+	br
+	b Wholesale Price:
+	br
+	input(class="form-control" ng-model="storeitem.wholesaleprice" type="text" ng-blur="updatewholesaleprice(storeitem.id, storeitem.wholesaleprice)")
+	br
+	br
+	br
+div(class="col-sm-6")
+	b Product Info: {{storeitem.prodinfo}}
+	br
+	select(ng-model="storeitem.prodinfo" ng-change="updateprodinfo(storeitem.id, storeitem.prodinfo)")
+		option(value="In Stock" ng-selected="storeitem.prodinfo === 'In Stock'") In Stock
+		option(value="Out of Stock" ng-selected="storeitem.prodinfo === 'Out of Stock'") Out of Stock
+		option(value="Coming Soon" ng-selected="storeitem.prodinfo === 'Coming Soon'") Coming Soon
+		option(value="Pre-order Now" ng-selected="storeitem.prodinfo === 'Pre-order Now'") Pre-order Now
+		option(value="On Sale" ng-selected="storeitem.prodinfo === 'On Sale'") On Sale
+
+	br
+	br
+	br
+	b Inventory:
+	input(class="form-control" ng-model="storeitem.inventory" type="text"  ng-blur="updateinventory(storeitem.id, storeitem.inventory)")
+	br
+	br
+
+//  ---------------------------------------------------------------------------  
+// ---------------PRODUCT BLURBS  --------------------------------------------  
+//  ---------------------------------------------------------------------------  
+//  ---------------------------------------------------------------------------  
+hr
+div(class="col-sm-6")
+	b Bullet Points:
+  
+	div(ng-repeat="itmdesc in storeitem.proddesc track by $index") :
+		input(class="form-control" ng-model="itmdesc.description" type="text" ng-blur="updatedescription(itmdesc.id,  $index, itmdesc.description)")
+		button(class="btn btn-xs btn-danger" ng-click="deletedescrip(itmdesc.id)")
+			span(class="glyphicon glyphicon-remove")                                                                          
+
+	input(class="form-control" ng-model="storeitem.adddesc" type="text")
+	button(class="btn btn-info" ng-click="addnewdescription(storeitem.id, storeitem.adddesc, storeitem.description.length)") Add New Description 
+		span(class="glyphicon glyphicon-plus") 
+	br
+	br
+	
+div(class="clr")
+// --------------------------------------------------------------------------- 
+// ---------------PRODUCT IMAGES  -------------------------------------------- 
+// --------------------------------------------------------------------------- 
+// ---------------------------------------------------------------------------
+hr
+div(class="col-sm-12")
+	b Product Images:
+  
+	div(ng-repeat="img in storeitem.prodimgs")
+		div(class="pull-left")
+			button(class="btn btn-xs btn-danger" ng-click="delprodimage(img.id)")
+				span(class="glyphicon glyphicon-remove")
+			img(ng-src="public/prodImages/{{storeitem.id}}/{{img.imgS}}")
+	div(class="clr")
+	br
+	
+	input(id="file{{storeitem.id}}" type="file" name="file{{storeitem.id}}" fileread="addpicfile")
+	button(class="btn btn-success" ng-click="uploadProdImg(storeitem.prodimgs.length)") Submit 
+		span
+			img(id="loader" src="public/img/loader.gif" style="display:none;")
+	br 
+	div(class="progress" ng-show="uploading")
+		div(id="upLoadProg" class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="{{uploadProgress}}" aria-valuemin="0" aria-valuemax="100" ng-style="uploadProgressStyle()") {{uploadProgress}}%
+	
+	div(ng-repeat="fup in addpicfile")
+		div {{fup.name}}
+		br
+	br
+	br
+	br
+	div(class="clr")
+	
+// ---------------------------------------------------------------------------
+// ---------------OPTIONS  ---------------------------------------------------- 
+// --------------------------------------------------------------------------- 
+// --------------------------------------------------------------------------- 
+hr
+div
+	b OPTIONS:
+	div(ng-repeat="optioncat in storeitem.prodoptioncats" style="width:100%;")
+		div(style="border: 2px solid black;" class="col-md-4 col-sm-6")
+			b Category Name:
+				input(class="form-control" ng-model="optioncat.name" type="text" ng-blur="updateoptionCatname(optioncat.id, optioncat.name)")
+			div(ng-repeat="opt in optioncat.options" style="border: 1px dashed red; padding:5px; margin-bottom:3px;") Option:
+				button(class="btn btn-xs btn-danger pull-right"  ng-click="deleteoption(opt.id)")
+					span(class="glyphicon glyphicon-remove")
+				input(class="form-control" ng-model="opt.name" type="text" ng-blur="updateoptionname(opt.id, opt.name)")
+				br
+				b Addon Price:
+				input(class="form-control" ng-model="opt.price" type="text"  ng-blur="updateoptionprice(opt.id, opt.price)")
+				br
+				b Img Ref Index:
+				input(class="form-control" ng-model="opt.imglink" type="text" ng-blur="updateoptionimglink(opt.id, opt.imglink)")
+				br
+				b Active?:
+				br 
+				input(type="checkbox" name="optionActive" ng-model="opt.status" ng-true-value="1" ng-false-value="0"  ng-change="updateOptionstatus(opt.id, opt.status)")
+				br
+				b Option Inventory:
+				input(class="form-control" ng-model="opt.inventory" type="text" ng-blur="updateoptioninventory(opt.id, opt.inventory)")
+				br
+				
+ 
+			input(class="form-control" ng-model="optioncat.addoptioncat" type="text")
+			button(class="btn btn-info" ng-click="addoptiontoexistingcategory(optioncat.id, optioncat.addoptioncat)") Add Option in this Category 
+				span(class="glyphicon glyphicon-plus")
+
+	div(class="col-md-4 col-sm-6")
+		input(class="form-control" ng-model="storeitem.addoptcat" type="text")
+		button(class="btn btn-info" ng-click="addoptioncat(storeitem.id, storeitem.addoptcat)") Add Option Category
+			span(class="glyphicon glyphicon-plus")
+ 
+	br
+div(class="clr")
+	br
+
+
+
+

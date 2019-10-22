@@ -1,0 +1,45 @@
+///layout.pug	
+doctype html
+html
+	head
+		base(href='/')
+		meta(charset="UTF-8")
+		meta(
+			name="viewport"
+			content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"
+			)
+		meta(http-equiv="X-UA-Compatible" content="IE=edge")
+
+		link(rel="shortcut icon" href="public/logoIcons/favicon.ico" type="image/x-icon")
+		link(rel="icon" href="public/logoIcons/favicon.ico" type="image/x-icon")
+		link(rel="icon" type="image/png" href="public/logoIcons/favicon-32x32.png" sizes="32x32")
+		link(rel="icon" type="image/png" href="public/logoIcons/favicon-16x16.png" sizes="16x16")
+
+		link(href="https://fonts.googleapis.com/css?family=Orbitron" rel="stylesheet")
+		link(rel="stylesheet" href="public/css/main.css")
+
+		audio(id="split_cell" src="public/audio/split.mp3")
+		audio(id="spawn_cell" src="public/audio/spawn.mp3")
+		script(src="https://www.paypalobjects.com/api/checkout.js")
+		script(src="https://www.coinbase.com/assets/button.js" type="text/javascript")
+		block title
+			title Xonumia
+
+
+	body(ng-app="XonumiaJSApp" ng-controller="MainController as mainCtrl")
+		ui-view
+    
+		div(style="display:none;")
+			img(id="advImgAvailable" src="public/advImages/sponsorshipavailable.png")
+			img(id="advImgInterest" src="public/advImages/sponsorshipinterest.png")
+			img(id="all3flagsV" src="public/img/all3flagsV.png")
+			img(id="2flagsV"  src="public/img/2flagsV.png")
+			img(id="1flagV"   src="public/img/1flagV.png")
+			img(id="noflagsV" src="public/img/noflagsV.png")
+
+
+
+		//script(src="//code.jquery.com/jquery-2.2.0.min.js")
+		
+		//script(src="public/js/libs/bootstrap.min.js")
+		script(src="public/js/app.js")

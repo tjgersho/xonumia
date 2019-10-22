@@ -1,0 +1,13 @@
+div(ng-if="loading" class="text-center")
+	img(src="public/img/loading.gif")
+div(ng-if="!loading")
+	h3 Your Maze Conquring:
+	div(id="dashConqOuterDiv")
+		div(id="dashConqScroll")
+			div(ng-repeat="m in allMapsWithStartAndFinish.rows | orderBy:'id'" class="dashMapBox" ng-class="dashMapBoxClass(m.id)")
+				div(style="position:relative; width:100%; height:100%;")
+					div(class="mapConqurFill" ng-style="{height: dashMapBoxConqurPercent(m.id)}")
+					p(class="dashMapInfo") {{m.mapname}}
+					
+
+div(class="clr")
